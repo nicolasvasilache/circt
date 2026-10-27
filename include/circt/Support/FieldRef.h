@@ -105,9 +105,8 @@ struct DenseMapInfo<circt::FieldRef> {
   static inline circt::FieldRef getEmptyKey() {
     return circt::FieldRef(DenseMapInfo<mlir::Value>::getEmptyKey(), 0);
   }
-  static inline circt::FieldRef getTombstoneKey() {
-    return circt::FieldRef(DenseMapInfo<mlir::Value>::getTombstoneKey(), 0);
-  }
+  // Upstream LLVM removed tombstone keys from the DenseMapInfo interface;
+  // only the empty key, the hash, and equality remain.
   static unsigned getHashValue(const circt::FieldRef &val) {
     return circt::hash_value(val);
   }
